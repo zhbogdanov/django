@@ -1,0 +1,121 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Создать таск
+{% endblock %}
+
+{% block content %}
+
+
+
+    <h1>Создать договор</h1>
+    <form method="post">
+        {% csrf_token %}
+        Введите нужную информацию<br><br>
+
+        <strong>Информация о контрагенте*</strong><br><br>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label">Наименование:</label>
+            <div class="col-9">
+                {{ form.name_of_the_organization }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label">Юридический адрес:</label>
+            <div class="col-9">
+                {{ form.address }}
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-3 col-form-label">Email</label>
+            <div class="col-9">
+                {{ form.email }}
+            </div>
+        </div>
+
+
+
+        <!-- drop-down list-->
+        <strong>Предмет договора*</strong><br><br>
+        <div class="form-group raw">
+            <label for="exampleFormControlSelect1"></label>
+                {{ form.subject_of_a_contract }}
+        </div>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label">Наименование:</label>
+            <div class="col-9">
+                {{ form.name_of_the_contract }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="example-number-input" class="col-3 col-form-label">Количество:</label>
+            <div class="col-9">
+                {{ form.quantity }}
+            </div>
+        </div>
+
+        <strong>Номер договора*</strong><br><br>
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label"></label>
+            <div class="col-9">
+                {{ form.number_of_contract }}
+            </div>
+        </div>
+
+        <strong>Дата подписания*</strong><br><br>
+
+        <div class="form-group row">
+            <label  for="example-data-input" class="col-3 col-form-label"></label>
+            <div class="col-9">
+                {{ form.date_of_signing }}
+            </div>
+        </div>
+
+        <strong>Срок исполнения*</strong><br><br>
+        <div class="form-group row">
+            <label for="example-data-input" class="col-3 col-form-label"></label>
+            <div class="col-9">
+                {{ form.period_of_execution }}
+            </div>
+        </div>
+
+        <strong>Условия об оплате*</strong><br><br>
+        <div class="form-group row">
+            <label for="example-number-input" class="col-3 col-form-label">Цена:</label>
+            <div class="col-9">
+                {{ form.price }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label">Доли платежа:</label>
+            <div class="col-9">
+                {{ form.share_of_payment }}
+            </div>
+        </div>
+
+        Срок:<br><br>
+        <div class="form-group row">
+            <label for="example-data-input" class="col-3 col-form-label"></label>
+            <div class="col-9">
+                {{ form.term }}
+            </div>
+        </div>
+
+        <strong>Предмет договора*</strong><br><br>
+        <div class="form-group raw">
+            <label for="exampleFormControlSelect1"></label>
+                {{ form.other_conditions }}
+        </div>
+
+
+        <button type="submit" class="btn btn-success">Добавить</button>
+        <span>{{ error }}</span>
+    </form>
+{% endblock %}

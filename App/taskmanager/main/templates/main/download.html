@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Страница про скачивание
+{% endblock %}
+
+{% block content %}
+<h2>Download doc</h2>
+    {% for doc in docs %}
+        {{ doc.title }}
+        {{ doc.file }}
+    {% endfor %}
+{% endblock %}

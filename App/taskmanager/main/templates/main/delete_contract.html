@@ -1,0 +1,29 @@
+{%extends 'main/base.html' %}
+
+{% block title %}
+Удаление контракта
+{% endblock %}
+
+{% block content %}
+
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+			<p>Вы уверены что хотите удалить "{{ item.number_of_contract }}"?</p>
+
+			<form action="{% url 'delete_contract' item.id  %}" method="POST">
+
+				{% csrf_token %}
+				<a class="btn btn-warning" href="{% url 'home' %}">Отметить</a>
+
+				<input class="btn btn-danger" type="submit" name="Подтвердить">
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

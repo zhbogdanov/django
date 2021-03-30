@@ -1,0 +1,105 @@
+
+{%extends 'main/base.html' %}
+
+{% block title %}
+Добавить в таблицу срок
+{% endblock %}
+
+{% block content %}
+
+
+
+
+    <form acrion="" method="post">
+        {% csrf_token %}
+
+
+        Контракт<br>
+        <div class="form-group raw">
+            <label for="exampleFormControlSelect1"></label>
+                {{ form.contract }}
+        </div>
+
+
+		Срок исполнения<br>
+
+        <div class="form-group row">
+            <label  for="example-data-input" class="col-3 col-form-label"></label>
+            <div class="col-9">
+                {{ form.execution_period }}
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label">Наименование</label>
+            <div class="col-9">
+                {{ form.name }}
+            </div>
+        </div>
+
+
+		<div class="form-group row">
+            <label for="example-number-input" class="col-3 col-form-label">Количество товаров</label>
+            <div class="col-9">
+                {{ form.subject }}
+            </div>
+        </div>
+
+		Срок оплаты<br>
+
+        <div class="form-group row">
+            <label  for="example-data-input" class="col-3 col-form-label"></label>
+            <div class="col-9">
+                {{ form.payment_period }}
+            </div>
+        </div>
+
+		<div class="form-group row">
+            <label for="example-number-input" class="col-3 col-form-label">Сумма</label>
+            <div class="col-9">
+                {{ form.amount }}
+            </div>
+        </div>
+
+		
+        <div class="form-group row">
+            <label for="example-number-input" class="col-3 col-form-label">Сколько заплатили</label>
+            <div class="col-9">
+                {{ form.paid }}
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="example-number-input" class="col-3 col-form-label">Сколько поставили</label>
+            <div class="col-9">
+                {{ form.delivered }}
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="example-number-input" class="col-3 col-form-label">Неустойка</label>
+            <div class="col-9">
+                {{ form.penalty }}
+            </div>
+        </div>
+
+		Реакция<br>
+        <div class="form-group raw">
+            <label for="exampleFormControlSelect1"></label>
+                {{ form.reaction }}
+        </div>
+
+		Качество<br>
+        <div class="form-group raw">
+            <label for="exampleFormControlSelect1"></label>
+                {{ form.quality }}
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success">Добавить</button>
+        <span>{{ error }}</span>
+    </form>
+{% endblock %}

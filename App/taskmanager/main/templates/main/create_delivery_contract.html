@@ -1,0 +1,81 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Договор Поставки
+{% endblock %}
+
+{% block content %}
+
+
+
+    <h4>Создать договор</h4>
+    <form method="post">
+        {% csrf_token %}
+        <br><h4>Общая информация о контрагенте</h4><br>
+        Дата подписания<br><br>
+
+        <div class="form-group row">
+            <label  for="example-data-input" class="col-3 col-form-label"></label>
+            <div class="col-9">
+                {{ form.date_of_signing }}
+            </div>
+        </div>
+
+	Скрок исполнения<br><br>
+
+        <div class="form-group row">
+            <label  for="example-data-input" class="col-3 col-form-label"></label>
+            <div class="col-9">
+                {{ form.delivery_date }}
+            </div>
+        </div>
+	
+
+        Сторона в договоре<br>
+        <div class="form-group raw">
+            <label for="exampleFormControlSelect1"></label>
+                {{ form.side }}
+        </div>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label">Наименование организации</label>
+            <div class="col-9">
+                {{ form.title }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label">Генеральный директор</label>
+            <div class="col-9">
+                {{ form.director }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label">Адрес</label>
+            <div class="col-9">
+                {{ form.legal_address }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-3 col-form-label">Email</label>
+            <div class="col-9">
+                {{ form.email }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-3 col-form-label">Номер договора</label>
+            <div class="col-9">
+                {{ form.number_of_contract }}
+            </div>
+        </div>
+
+
+
+
+        <button type="submit" class="btn btn-success">Добавить этапы</button>
+        <span>{{ error }}</span>
+    </form>
+{% endblock %}

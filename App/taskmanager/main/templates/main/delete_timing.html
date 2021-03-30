@@ -1,0 +1,29 @@
+
+{%extends 'main/base.html' %}
+
+{% block title %}
+Удаление срока
+{% endblock %}
+
+{% block content %}
+
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+			<p>Вы уверены что хотите удалить данный срок?</p>
+
+			<form action="{% url 'delete_timing' item.id %}" method="POST">
+
+				{% csrf_token %}
+				<a class="btn btn-warning" href="{% url 'home' %}">Отменить</a>
+				<input class="btn btn-danger" type="submit" name="Подтвердить">
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

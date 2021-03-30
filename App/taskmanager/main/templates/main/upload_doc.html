@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Страница про скачивание
+{% endblock %}
+
+{% block content %}
+<h2>Upload doc</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="document">
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

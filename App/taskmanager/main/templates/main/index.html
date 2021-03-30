@@ -1,0 +1,41 @@
+{%extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="card card-body">
+    <h5>Журнал договоров</h5> <br>
+         <a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_delivery_contract' %}">Добавить договор</a>
+            <table class="table table-striped">
+                <tr>
+                    <th></th>
+                    <th>Договор</th>
+	            <th>Дата подписания</th>
+                    <th>Контрагент</th>
+                    <th>Вид договора</th>
+                    <th>Срок действия</th>
+                    <th>Изменить</th>
+                    <th>Удалить</th>
+                </tr>
+
+                {% for contract in contracts %}
+                    <tr>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'table' contract.id %}">Этапы</a></td>
+                        <td>{{ contract.number_of_contract }}</td>
+                        <td>{{ contract.date_of_signing }}</td>
+                        <td>{{ contract.title }}</td>
+                        <td>{{ contract.type }}</td>
+                        <td>{{ contract.delivery_date }}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'update_contract' contract.id %}">Изменить</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_contract' contract.id %}">Удалить</a></td>
+                    </tr>
+                {%  endfor %}
+         </table>
+    </div>
+
+{% endblock %}
+
+
+

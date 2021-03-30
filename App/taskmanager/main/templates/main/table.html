@@ -1,0 +1,56 @@
+{%extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="card card-body">
+    <h5>Этапы исполнения договора "{{ contract.number_of_contract }}" <br/> Сторона в договоре: {{ contract.side }} </h5><br>
+        <a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_timing' contract.id %}">Добавить срок</a>
+        <table class="table table-striped">
+            <tr>
+              <th scope="col">Срок исполнения</th>
+              <th scope="col">Количество товара</th>
+              <th scope="col">Срок оплаты</th>
+              <th scope="col">Сумма</th>
+              <th scope="col">Статус </th>
+              <th scope="col">Неустойка</th>
+              <th scope="col">Претензия</th>
+              <th scope="col">Изменить</th>
+              <th scope="col">Удалить</th>
+            </tr>
+            {% for object in timing %}
+              <tr>
+                  <td>{{object.execution_period }}</td>
+                  <td>{{object.subject}}</td>
+                  <td>{{object.payment_period}}</td>
+                  <td>{{object.amount}}</td>
+                  <td>{{object.reaction}}</td>
+                  <td>{{object.penalty}}</td>
+                  {% if object.contract.side == side_pok %}
+                      {% if object.reaction == 'Не выполнено' and n > object.payment_period %}
+                          <td><a class="btn btn-sm btn-success" href="{% url 'penalty_to_another_side_pay' object.id %}">Сформировать</a></td>
+                      {% elif object.reaction == 'Не выполнено' and n > object.execution_period or object.quality == quality_bad and n > object.execution_period %}
+                          <td><a class="btn btn-sm btn-outline-secondary" href="{% url 'penalty_to_us' %}">Сформировать</a></td>
+                      {% else %}
+                          <td><a class="btn btn-sm btn-outline-secondary" href="">Сформировать</a></td>
+                      {% endif %}
+                  {% elif object.contract.side == side_pos %}
+                      {% if object.reaction == 'Не выполнено' and n > object.execution_period %}
+                          <td><a class="btn btn-sm btn-success" href="{% url 'penalty_to_another_side_reaction' object.id %}">Сформировать</a></td>
+                      {% elif object.quality == quality_bad and n > object.execution_period %}
+                          <td><a class="btn btn-sm btn-success" href="{% url 'penalty_to_another_side_quality' object.id %}">Сформировать</a></td>
+                      {% elif object.reaction == 'Не выполнено' and n > object.payment_period %}
+                          <td><a class="btn btn-sm btn-success" href="{% url 'penalty_to_us' %}">Сформировать</a></td>
+                      {% else %}
+                          <td><a class="btn btn-sm btn-outline-secondary" href="">Сформировать</a></td>
+                      {% endif %}
+                  {% endif %}
+                  <td><a class="btn btn-sm btn-info" href="{% url 'update_timing' object.id %}">Изменить</a></td>
+                  <td><a class="btn btn-sm btn-danger" href="{% url 'delete_timing' object.id %}">Удалить</a></td>
+              </tr>
+          {%  endfor %}
+        </table>
+    </div>
+{% endblock %}
